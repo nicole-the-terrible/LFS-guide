@@ -64,3 +64,34 @@ sudo -E mount -v -t ext4 <you new partition name> $LFS
 ## STEP 3 Packages and Patches
 
 - create a dir for our packages
+```shell
+mkdir -v $LFS/sources
+chmod -v a+wt $LFS/sources #all write permission
+```
+- download packages for our LFS build 
+```shell
+wget https://www.linuxfromscratch.org/lfs/view/stable/wget-list-sysv
+wget --input-file=wget-list-sysv --continue --directory-prefix=$LFS/sources
+```
+
+## STEP 4 Final Prep
+after this we can start building our LFS
+
+- create a limited dic layout in the lfs filesystem
+using this command to create required directory
+```shell
+mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
+
+for i in bin lib sbin; do
+  ln -sv usr/$i $LFS/$i
+done
+
+case $(uname -m) in
+  x86_64) mkdir -pv $LFS/lib64 ;;
+esac
+```
+```shell
+mkdir -pv $LFS/tools
+```
+
+- add LFS user
