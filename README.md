@@ -5,13 +5,8 @@ Dummies guide to LFS
 ### disclaimer
 please refer to the [official Linux From Scratch guide](https://www.linuxfromscratch.org/lfs/view/stable/index.html). This guide is just an overview short guideline refer to the LFS document for more
 
-## BOOT
-![Boot](./demo_boot.gif)
-
-## Neofetch :)
-![Neofetch](./neofetch.gif)
-
-## STEP 1 set up the environment where we will use to build LFS. I'll use Ubuntu 24.04.3 running on a VM you can use other distro, or do this outside of VMs
+## STEP 1 set up the environment where we will use to build LFS.
+ I'll use Ubuntu 24.04.3 running on a VM you can use other distro, or do this outside of VMs
 
 ### My VM Spec
 - VMware workstation 17
@@ -36,10 +31,36 @@ we will be using the fdisk to do this is you're not similar with the program i r
 
 - use -l to list the partition
 ```shell
-sudo fdisk -l /dev/sbd
+sudo fdisk -l /dev/sda
 ```
 - create a GPT partition
 ```shell
-fdisk /dev/sdb
+fdisk /dev/sda
+```
+- after entering fdisk use these command to create a GPT partition
+
+    - g : insert func
+    - n : insert func
+    - p : insert func
+    - w : insert func
+
+- Create file system on the partition we just created 
+
+    - format the partition to ext4 using ```mkfs```
+    ```shell
+    sudo mkfs -v -t ext4 <you new partition name>
+    ```
+- Set the $LFS Variable
+
+```shell
+export LFS=mnt/lfs
+```
+- mount the new partition
+```shell
+sudo -E mkdir -pv $LFS
+sudo -E mount -v -t ext4 <you new partition name> $LFS
 ```
 
+## STEP 3 Packages and Patches
+
+- create a dir for our packages
