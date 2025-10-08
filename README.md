@@ -95,3 +95,39 @@ mkdir -pv $LFS/tools
 ```
 
 - add LFS user
+to avoid logging in as ```root``` and destroy everything while we at it we gonna make a new user you can do this by
+```shell
+groupadd lfs <you can use your own desire usrname>
+useradd -s /bin/bash -g lfs -m -k /dev/null lfs
+```
+- grant ```new user``` full access to all $LFS directories
+
+```shell
+chown -v lfs $LFS/{usr{,/*},var,etc,tools}
+case $(uname -m) in
+  x86_64) chown -v lfs $LFS/lib64 ;;
+esac
+```
+- start a shell running as the new user we just create
+
+```shell
+su - lfs
+```
+- setting up the environment
+we will set up a working environment by creating two new startup file for ```bash``` shell. create a new ```.bash_profile```:
+
+```shell
+cat > ~/.bashrc << "EOF"
+set +h
+umask 022
+LFS=/mnt/lfs
+LC_ALL=POSIX
+LFS_TGT=$(uname -m)-lfs-linux-gnu
+PATH=/usr/bin
+if [ ! -L /bin ]; then PATH=/bin:$PATH; fi
+PATH=$LFS/tools/bin:$PATH
+CONFIG_SITE=$LFS/usr/share/config.site
+export LFS LC_ALL LFS_TGT PATH CONFIG_SITE
+EOF
+```
+
