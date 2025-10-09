@@ -132,4 +132,9 @@ EOF
 ```
 ## STEP 5. Compiling a cross-toolchain
 
-- 
+- Compiling a Cross-Toolchain
+
+```Shell
+mkdir -v build
+cd build
+```
