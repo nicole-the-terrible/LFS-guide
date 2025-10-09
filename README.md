@@ -130,4 +130,6 @@ CONFIG_SITE=$LFS/usr/share/config.site
 export LFS LC_ALL LFS_TGT PATH CONFIG_SITE
 EOF
 ```
+## STEP 5. Compiling a cross-toolchain
 
+- 
