@@ -141,3 +141,5 @@ https://www.linuxfromscratch.org/lfs/view/stable/chapter06/introduction.html
 ## STEP 7. Entering Chroot and Building Additional Temporary Tools
 
 https://www.linuxfromscratch.org/lfs/view/stable/chapter07/introduction.html
+
+#
