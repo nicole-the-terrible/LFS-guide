@@ -132,9 +132,12 @@ EOF
 ```
 ## STEP 5. Compiling a cross-toolchain
 
-- Compiling a Cross-Toolchain
+https://www.linuxfromscratch.org/lfs/view/stable/chapter05/introduction.html
 
-```Shell
-mkdir -v build
-cd build
-```
+## STEP 6. Cross Compiling Temporary tools 
+
+https://www.linuxfromscratch.org/lfs/view/stable/chapter06/introduction.html
+
+## STEP 7. Entering Chroot and Building Additional Temporary Tools
+
+https://www.linuxfromscratch.org/lfs/view/stable/chapter07/introduction.html
