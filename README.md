@@ -1,19 +1,19 @@
 # LFS-guide 
 
-Dummies guide to LFS
+Dummies' guide to LFS
 
 ### disclaimer
-please refer to the [official Linux From Scratch guide](https://www.linuxfromscratch.org/lfs/view/stable/index.html). This guide is just an overview short guideline refer to the LFS document for more
+Please refer to the [official Linux From Scratch guide](https://www.linuxfromscratch.org/lfs/view/stable/index.html). This guide is just an overview, a shortened LFS guide. Refer to the LFS document for more
 
-## STEP 1 set up the environment where we will use to build LFS.
- I'll use Ubuntu 24.04.3 running on a VM you can use other distro, or do this outside of VMs
+## STEP 1 Set up the environment where we will use to build LFS.
+ I'll use Ubuntu 24.04.3 running on a VM. You can use other distros, or do this outside of VMs
 
 ### My VM Spec
-- VMware workstation 17
+- VMware Workstation 17
 - Ubuntu 24.04.3
-- RAM: 8 gb
+- RAM: 8 GB
 - Processor: 1 CPU
-- 80gb of storage
+- 80 GB of storage
 
 ## STEP 2 Preparing your base OS for building LFS
 
@@ -23,28 +23,28 @@ please refer to the [official Linux From Scratch guide](https://www.linuxfromscr
 sudo apt install bison gawk m4 texinfo 
 sudo ln -sf bash /usr/bin/sh
 ```
-- you could also run a version check after install all the packages using this [version-check.sh](https://www.linuxfromscratch.org/lfs/view/10.1-rc1/chapter02/hostreqs.html)
+- You could also run a version check after installing all the packages using this [version-check.sh](https://www.linuxfromscratch.org/lfs/view/10.1-rc1/chapter02/hostreqs.html)
 
 ### Create new partition
 
-we will be using the fdisk to do this is you're not similar with the program i recommand this [comprehensive guide](https://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/) we will start by listing the partition we have and then start creating a new partition for building LFS.
+We will be using the fdisk to do this. is you're not familiar with the program I recommend this [comprehensive guide](https://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/). We will start by listing the partitions we have and then start creating a new partition for building LFS.
 
 - use -l to list the partition
 ```shell
 sudo fdisk -l /dev/sda
 ```
-- create a GPT partition
+- Create a GPT partition
 ```shell
 fdisk /dev/sda
 ```
-- after entering fdisk use these command to create a GPT partition
+- after entering fdisk, use these commands to create a GPT partition
 
     - g : insert func
     - n : insert func
     - p : insert func
     - w : insert func
 
-- Create file system on the partition we just created 
+- Create a file system on the partition we just created 
 
     - format the partition to ext4 using ```mkfs```
     ```shell
@@ -75,10 +75,10 @@ wget --input-file=wget-list-sysv --continue --directory-prefix=$LFS/sources
 ```
 
 ## STEP 4 Final Prep
-after this we can start building our LFS
+After this, we can start building our LFS
 
-- create a limited dic layout in the lfs filesystem
-using this command to create required directory
+- Create a limited dic layout in the LFS filesystem
+using this command to create the required directory
 ```shell
 mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
 
@@ -95,9 +95,9 @@ mkdir -pv $LFS/tools
 ```
 
 - add LFS user
-to avoid logging in as ```root``` and destroy everything while we at it we gonna make a new user you can do this by
+to avoid logging in as ```root``` and destroy everything, while we're at it, we're gonna make a new user. You can do this by
 ```shell
-groupadd lfs <you can use your own desire usrname>
+groupadd lfs <you can use your own desired username>
 useradd -s /bin/bash -g lfs -m -k /dev/null lfs
 ```
 - grant ```new user``` full access to all $LFS directories
@@ -108,13 +108,13 @@ case $(uname -m) in
   x86_64) chown -v lfs $LFS/lib64 ;;
 esac
 ```
-- start a shell running as the new user we just create
+- start a shell running as the new user we just created
 
 ```shell
 su - lfs
 ```
 - setting up the environment
-we will set up a working environment by creating two new startup file for ```bash``` shell. create a new ```.bash_profile```:
+we will set up a working environment by creating two new startup files for ```bash``` shell. create a new ```.bash_profile```:
 
 ```shell
 cat > ~/.bashrc << "EOF"
@@ -134,7 +134,7 @@ EOF
 
 https://www.linuxfromscratch.org/lfs/view/stable/chapter05/introduction.html
 
-## STEP 6. Cross Compiling Temporary tools 
+## STEP 6. Cross-Compiling Temporary tools 
 
 https://www.linuxfromscratch.org/lfs/view/stable/chapter06/introduction.html
 
